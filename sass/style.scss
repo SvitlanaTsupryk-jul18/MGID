@@ -15,6 +15,25 @@ $text-grey:#2c3e50;
     color: white;
     background-color: $button-green;
     border-radius: 3px;
+    &:hover {
+        background-color: #27ae60;
+        animation: pulse 1s infinite;
+    }
+}
+
+@keyframes pulse {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
 }
 
 %container-inner {
@@ -68,6 +87,10 @@ nav {
     color: $button-green;
     background-color: white;
     padding: 13px 25px;
+    transition: all 0.5s ease-in;
+    &:hover {
+        transform: scale(1.2);
+    }
 }
 
 .logo h1 {
@@ -78,11 +101,19 @@ nav {
 nav li {
     display: inline-block;
     padding: 1em 1.3em;
+    transition: all 1s ease;
+    &:hover {
+        transform: scale(1.8);
+        a {
+            color: $button-green;
+        }
+    }
 }
 
 nav li a {
-    color: white;
     font-size: 15px;
+    color: white;
+    transition: all 1s ease;
 }
 
 .buttonhead {
@@ -101,6 +132,8 @@ nav li a {
 .mySlides img {
     vertical-align: middle;
     width: 100vw;
+    min-height: 300px;
+    object-fit: cover;
 }
 
 
@@ -225,14 +258,6 @@ nav li a {
 
 /* On smaller screens, decrease text size */
 
-@media only screen and (max-width: 300px) {
-    .prev,
-    .next,
-    .text {
-        font-size: 1em;
-    }
-}
-
 .button {
     @extend %btn;
     padding: 13px 23px;
@@ -265,7 +290,7 @@ nav li a {
 .right {
     text-align: right;
     &_name {
-        text-align-last: left;
+        text-align: left;
         padding-bottom: 0.5em;
     }
     &_img {
@@ -292,12 +317,13 @@ nav li a {
     flex-direction: column;
     padding: 1em 5em;
     margin: 0 auto;
+    color: #555555;
 }
 
 .register h2 {
     padding: 1em 0;
-    font-weight: ;
-    font-size:
+    font-size: 2em;
+    font-weight: 100;
 }
 
 input[type="text"],
@@ -329,4 +355,364 @@ footer {
 
 footer p {
     padding-top: 12px;
+}
+
+.mob-menu {
+    display: none;
+}
+
+%line {
+    background: white;
+    width: 30px;
+    height: 3px;
+}
+
+// Animate the top bar on hover
+@keyframes menu-hover-top-over {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+// Animate the bottom bar on hover
+@keyframes menu-hover-bottom-over {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+// Animate the top bar on hover-OUT
+@keyframes menu-load-state-top {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+// Animate the bottom bar on hover-OUT
+@keyframes menu-load-state-bottom {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+//Slide that sub-menu in
+@keyframes menu-active-slide {
+    0% {
+        transform: translateX(-10px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+//Rotate that top bar on active
+@keyframes top-rot-in {
+    0% {
+        transform: rotate(0deg);
+        transform-origin: left;
+    }
+    100% {
+        transform: rotate(45deg);
+        transform-origin: left;
+    }
+}
+
+//Rotate that bottom bar on active
+@keyframes bot-rot-in {
+    0% {
+        transform: rotate(0deg);
+        transform-origin: left;
+    }
+    100% {
+        transform: rotate(-45deg);
+        transform-origin: left;
+    }
+}
+
+.mob-menu {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    z-index: 100;
+    a {
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.button-menu {
+    padding: 10px;
+    height: 45px;
+    width: 45px;
+    display: block;
+    position: relative;
+    background: $button-green;
+}
+
+.menu {
+    @extend %line;
+    position: absolute;
+    top: 24px;
+    &:before {
+        @extend %line;
+        content: '';
+        position: absolute;
+        top: -8px;
+        animation: menu-load-state-top .5s;
+    }
+    &:after {
+        @extend %line;
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 0px;
+        animation: menu-load-state-bottom .5s;
+    }
+    b {
+        opacity: 0;
+        top: -13px;
+        left: 2px;
+        font-size: .55em;
+        line-height: 1em;
+        position: relative;
+        transition: all 0.15s 0.15s ease-in;
+        transition-delay: .5s;
+    }
+}
+
+.menu:hover {
+    background: transparent;
+    transition: all 0.15s 0 ease-out;
+    &:before {
+        animation: menu-hover-top-over .5s .5s forwards;
+    }
+    &:after {
+        animation: menu-hover-bottom-over .5s .5s forwards;
+    }
+    b {
+        opacity: 1;
+    }
+}
+
+///Lets make a sub-menu
+.sub-menu {
+    font-weight: 300;
+    font-size: 1.5em;
+    list-style-type: none;
+    padding: 10px 20px;
+    width: 200px;
+    background: $button-green;
+    margin: 0;
+    position: fixed;
+    top: 8px;
+    left: 65px;
+    transition: opacity 0.25s ease;
+    opacity: 0;
+    li {
+        line-height: 60px;
+        border-bottom: 1px solid white;
+    }
+    li:last-child {
+        border-bottom: none;
+    }
+}
+
+.active {
+    .menu {
+        background: transparent;
+        &:before {
+            top: -10px;
+            left: 5px;
+            animation: top-rot-in .5s forwards;
+        }
+        &:after {
+            top: 10px;
+            left: 5px;
+            animation: bot-rot-in .5s forwards;
+        }
+        b {
+            opacity: 0;
+            transition: all 0.10s 0 ease-out;
+        }
+    }
+    .sub-menu {
+        opacity: 1;
+        transition: opacity 0.25s ease;
+        animation: menu-active-slide .25s;
+    }
+}
+
+@media only screen and (max-width: 1130px) {
+    .text {
+        padding-top: 2em;
+    }
+    .text .button {
+        margin-top: 1em;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .left {
+        margin-right: 2em;
+        padding-left: 2em;
+    }
+}
+
+@media only screen and (max-width: 830px) {
+    .left {
+        width: 80%;
+    }
+    .right {
+        padding: 6em 2em 0 0;
+    }
+}
+
+@media only screen and (max-width:700px) {
+    .about {
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+    }
+    .left {
+        width: 90%;
+        text-align: center;
+    }
+    .right {
+        padding: 2em;
+    }
+}
+
+@media only screen and (min-width: 320px)and (max-width:480px) {
+    .right {
+        text-align: center;
+        padding: 2em 0 0 0;
+        &_img {
+            width: 70%;
+            margin: 0 auto;
+        }
+        &_name {
+            text-align: center;
+        }
+    }
+    .about {
+        margin: 0;
+    }
+    .register {
+        padding: 2em;
+        width: 90vw;
+        align-items: center;
+        align-content: center;
+    }
+    .register h2 {
+        padding: 0.5px 0;
+        width: 300px;
+    }
+    .dots {
+        display: none;
+    }
+    .container {
+        display: none;
+    }
+    .mob-menu {
+        display: block;
+    }
+    input[type="text"],
+    input[type="password"],
+    select {
+        width: 250px;
+    }
+    .registration {
+        padding: 20px 0;
+    }
+}
+
+
+/* Dropdown Button */
+
+.dropbtn {
+    background-color: #f5f5f5;
+    color: #555555;
+    width: 300px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+
+/* Dropdown button on hover & focus */
+
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: $button-green;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 300px;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+    color: #555555;
+    padding: 17px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+
+/* Change color of dropdown links on hover */
+
+.dropdown-content a:hover {
+    background-color: #c4c4c4;
+}
+
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+
+.show {
+    display: block;
 }
