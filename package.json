@@ -15,5 +15,13 @@
   },
   "dependencies": {
     "autoprefixer": "^9.3.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SvitlanaTsupryk-jul18/MGID.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SvitlanaTsupryk-jul18/MGID/issues"
+  },
+  "homepage": "https://github.com/SvitlanaTsupryk-jul18/MGID#readme"
 }

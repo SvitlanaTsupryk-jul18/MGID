@@ -457,7 +457,7 @@ footer p {
 .mob-menu {
     font-family: 'Open Sans', sans-serif;
     color: white;
-    z-index: 100;
+    z-index: 1000;
     a {
         color: white;
         text-decoration: none;
@@ -469,8 +469,9 @@ footer p {
     height: 45px;
     width: 45px;
     display: block;
-    position: relative;
+    position: fixed;
     background: $button-green;
+    z-index: 1;
 }
 
 .menu {
@@ -532,6 +533,7 @@ footer p {
     left: 65px;
     transition: opacity 0.25s ease;
     opacity: 0;
+    z-index: 2;
     li {
         line-height: 60px;
         border-bottom: 1px solid white;
