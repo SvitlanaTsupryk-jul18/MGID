@@ -195,7 +195,12 @@ nav li a {
   padding: 13px 23px;
   font-weight: 400;
   font-size: 20px;
-  margin-top: 2.5em; }
+  margin-top: 2.5em; 
+transition: all 1s ease-out;
+    &:hover {
+        border-radius: 50%;
+    }
+}
 
 .about {
   display: flex;
