@@ -1,0 +1,41 @@
+'use strict';
+
+
+
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+
+//const autoprefixer = require('gulp-autoprefixer');
+//var htmlmin = require('gulp-htmlmin');
+//let cleanCSS = require('gulp-clean-css');
+
+/*gulp.task('autopref', () =>
+    gulp.src('css/style.css')
+    .pipe(autoprefixer({
+        browsers: ['last 2 versions'],
+        cascade: false
+    }))
+    .pipe(gulp.dest('dist'))
+);
+
+gulp.task('minify', function() {
+    return gulp.src('index.html')
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('minify-css', () => {
+    return gulp.src('css/style.css')
+        .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(gulp.dest('dist'));
+});*/
+
+gulp.task('sass', function() {
+    return gulp.src('./sass/**/*.scss')
+        .pipe(sass.sync().on('error', sass.logError))
+        .pipe(gulp.dest('./css'));
+});
+
+
+gulp.task('default', function() {
+    gulp.watch('./sass/**/*.scss', ['sass']);
+});
