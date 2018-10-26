@@ -7,7 +7,7 @@
     <title>Test MGID</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,900" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -30,6 +30,27 @@
             </ul>
             <button class="buttonhead" formaction="">ENTER</button>
         </nav>
+        <div class="mob-menu">
+            <a href="#" class="button-menu">
+                <span class="menu">
+                      <b>menu</b>
+                    </span>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">html</a>
+                </li>
+                <li>
+                    <a href="#">css</a>
+                </li>
+                <li>
+                    <a href="#">javascript</a>
+                </li>
+            </ul>
+        </div>
     </header>
     <section class="slider">
         <div class="slideshow-container">
@@ -107,36 +128,38 @@
     <section class="registration">
         <!-- <div> 
             <button id="reg">Sign in!</button>
-        </div>
-        <div class="modal">
-         </div>-->
+        </div>-->
 
 
         <form class="register" action="/example/handler.php" method="post">
             <h2>Register</h2>
             <input type="text" name="name" placeholder="  Login">
             <input type="password" name="pass" placeholder="  Password">
-            <select name="country">
-                    <option  selected>Country</option> 
-                    <option value="country1">Country1</option>
-                    <option value="country2">Country2</option>
-                    <option value="country3">Country3</option>
-                    <option value="country4">Country4</option>
-                    <option value="country5">Country5</option>
-                   
-            </select>
 
-            <input type="submit" value="ENTER" formaction="" class="button">
+            < <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Country&#32;&#32;&#32;	&#9662;
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#">Country1</a>
+                    <a href="#" Country2</a>
+                        <a href="#">Country 3</a>
+                </div>
+                </div>
+                <input type="submit" value="ENTER" formaction="" class="button">
         </form>
-
-
-
     </section>
     <footer>
         <p>&copy;2015 layout</p>
     </footer>
     </footer>
+
+    <script>
+        $(".button-menu").click(function() {
+            $(this).closest(".mob-menu").toggleClass("active");
+        });
+    </script>
     <script src="slider.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
