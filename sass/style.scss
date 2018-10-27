@@ -333,7 +333,7 @@ select {
     border-radius: 3px;
     background-color: #f5f5f5;
     width: 300px;
-    height: 50px;
+    height: 60px;
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: 300;
@@ -342,7 +342,7 @@ select {
 
 input[type="submit"] {
     width: 120px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 footer {
@@ -639,15 +639,106 @@ footer p {
     }
     input[type="text"],
     input[type="password"],
-    .dropbtn,
-    .dropdown-content,
-    .dropdown-content div,
-    .dropdown {
+    .select-selected,
+    .custom-select {
         width: 250px !important;
+        height: 50px;
     }
     .registration {
         padding: 20px 0;
     }
+}
+
+
+/*the container must be positioned relative:*/
+
+.custom-select {
+    position: relative;
+    background-color: #f5f5f5;
+    color: #555555;
+    width: 300px;
+    height: 50px;
+    border: none;
+}
+
+.custom-select select {
+    display: none;
+    margin-bottom: 10px;
+    /*hide original SELECT element:*/
+}
+
+.select-selected {
+    background-color: #f5f5f5;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 3px;
+    box-shadow: inset 2px 2px 1px 0px rgba(0, 0, 0, 0.5);
+    text-align: left;
+    font-size: 20px;
+}
+
+
+/*style the arrow inside the select element:*/
+
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 24px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #555555 transparent transparent transparent;
+}
+
+
+/*point the arrow upwards when the select box is open (active):*/
+
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #555555 transparent;
+    top: 17px;
+}
+
+
+/*style the items (options), including the selected item:*/
+
+.select-items div,
+.select-selected {
+    color: #555555;
+    padding: 12px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+/*style items (options):*/
+
+.select-items {
+    position: absolute;
+    background-color: white;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 300;
+    height: 150px;
+    overflow-y: scroll;
+    border-radius: 3px;
+}
+
+
+/*hide the items when the select box is closed:*/
+
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 
@@ -676,8 +767,7 @@ footer p {
 
 input[type="text"]:hover,
 input[type="password"]:hover,
-.dropbtn:hover,
-.dropbtn:focus {
+.select-selected:hover {
     background-color: rgba(54, 199, 115, 0.3);
 }
 
