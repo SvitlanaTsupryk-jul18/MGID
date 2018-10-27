@@ -5,11 +5,17 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 
-//const autoprefixer = require('gulp-autoprefixer');
+const autoprefixer = require('gulp-autoprefixer');
 //var htmlmin = require('gulp-htmlmin');
 //let cleanCSS = require('gulp-clean-css');
 
-/*gulp.task('autopref', () =>
+gulp.task('sass', function() {
+    return gulp.src('./sass/**/*.scss')
+        .pipe(sass.sync().on('error', sass.logError))
+        .pipe(gulp.dest('./css'));
+});
+
+gulp.task('autopref', () =>
     gulp.src('css/style.css')
     .pipe(autoprefixer({
         browsers: ['last 2 versions'],
@@ -17,7 +23,7 @@ var sass = require('gulp-sass');
     }))
     .pipe(gulp.dest('dist'))
 );
-
+/*
 gulp.task('minify', function() {
     return gulp.src('index.html')
         .pipe(htmlmin({ collapseWhitespace: true }))
@@ -28,12 +34,6 @@ gulp.task('minify-css', () => {
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(gulp.dest('dist'));
 });*/
-
-gulp.task('sass', function() {
-    return gulp.src('./sass/**/*.scss')
-        .pipe(sass.sync().on('error', sass.logError))
-        .pipe(gulp.dest('./css'));
-});
 
 
 gulp.task('default', function() {
